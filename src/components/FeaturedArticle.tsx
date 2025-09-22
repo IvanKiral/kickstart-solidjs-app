@@ -1,10 +1,10 @@
 import { Component, Show, createMemo } from "solid-js";
 import FeaturedComponentBase from "./FeaturedComponentBase";
-import { Article } from "../model";
+import { ArticleType } from "../model";
 import { Replace } from "../utils/types";
 
 type FeaturedArticleProps = {
-  article: Replace<Article, { elements: Partial<Article["elements"]> }>;
+  article: Replace<ArticleType, { elements: Partial<ArticleType["elements"]> }>;
 };
 
 const FeaturedArticle: Component<FeaturedArticleProps> = (props) => {
@@ -21,13 +21,12 @@ const FeaturedArticle: Component<FeaturedArticleProps> = (props) => {
           </Show>
           <Show when={props.article.elements.publish_date?.value}>
             <p class="text-center xl:text-left text-gray-light mt-6 text-lg">
-              {`Published on ${
-                new Date(props.article.elements.publish_date!.value!).toLocaleDateString("en-US", {
-                  month: "short",
-                  year: "numeric",
-                  day: "numeric",
-                })
-              }`}
+              {`Published on ${new Date(props.article.elements.publish_date!.value!).toLocaleDateString("en-US", {
+                month: "short",
+                year: "numeric",
+                day: "numeric",
+              })
+                }`}
             </p>
           </Show>
           <Show when={props.article.elements.introduction}>

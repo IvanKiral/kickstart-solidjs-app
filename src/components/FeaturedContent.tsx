@@ -1,17 +1,17 @@
 import { Component, Show, createMemo } from "solid-js";
-import { isArticle, isEvent, LandingPage } from "../model";
+import { isArticleType, isEventType, LandingPageType } from "../model";
 import PageSection from "./PageSection";
 import FeaturedArticle from "./FeaturedArticle";
 import FeaturedEvent from "./FeaturedEvent";
 import Divider from "./Divider";
 
 type FeaturedContentProps = {
-  featuredContent: LandingPage["elements"]["featured_content"];
+  featuredContent: LandingPageType["elements"]["featured_content"];
 };
 
 const FeaturedContent: Component<FeaturedContentProps> = (props) => {
-  const featuredArticle = createMemo(() => props.featuredContent.linkedItems.find(isArticle));
-  const featuredEvent = createMemo(() => props.featuredContent.linkedItems.find(isEvent));
+  const featuredArticle = createMemo(() => props.featuredContent.linkedItems.find(isArticleType));
+  const featuredEvent = createMemo(() => props.featuredContent.linkedItems.find(isEventType));
 
   return (
     <>

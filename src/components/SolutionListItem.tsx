@@ -1,18 +1,18 @@
 import { Component, createSignal, createEffect, For, Show } from "solid-js";
 import { createClient } from "../utils/client";
 import { useAppContext } from "../context/AppContext";
-import { Solution } from "../model/content-types/solution";
+import { SolutionType } from "../model";
 import { Replace } from "../utils/types";
 import { DeliveryError } from "@kontent-ai/delivery-sdk";
 
 const SolutionList: Component = () => {
   const { environmentId, apiKey } = useAppContext();
 
-  const [solutions, setSolutions] = createSignal<ReadonlyArray<Solution> | null>(null);
+  const [solutions, setSolutions] = createSignal<ReadonlyArray<SolutionType> | null>(null);
 
   createEffect(() => {
     createClient(environmentId, apiKey)
-      .items<Solution>()
+      .items<SolutionType>()
       .type("solution")
       .toPromise()
       .then(res => setSolutions(res.data.items))
@@ -37,7 +37,7 @@ const SolutionList: Component = () => {
 };
 
 type SolutionListItemProps = {
-  solution: Replace<Solution, { elements: Partial<Solution["elements"]> }>;
+  solution: Replace<SolutionType, { elements: Partial<SolutionType["elements"]> }>;
 };
 
 const SolutionListItem: Component<SolutionListItemProps> = (props) => {

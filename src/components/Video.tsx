@@ -1,5 +1,5 @@
 import { Component, Show } from "solid-js";
-import { Video as VideoType } from "../model";
+import { VideoType } from "../model";
 import { Replace } from "../utils/types";
 
 type VideoProps = {
@@ -26,9 +26,8 @@ const Video: Component<VideoProps> = (props) => {
             title={props.video.elements.headline?.value ?? "Video Title"}
             width={900}
             height={590}
-            src={`${props.video.elements.video_link!.value}${
-              props.video.elements.autoplay?.value[0]?.codename === "true" ? "&autoplay=1&mute=1" : ""
-            }`}
+            src={`${props.video.elements.video_link!.value}${props.video.elements.autoplay?.value[0]?.codename === "true" ? "&autoplay=1&mute=1" : ""
+              }`}
             referrerPolicy="strict-origin-when-cross-origin"
             allow={"autoplay"}
           />

@@ -1,6 +1,6 @@
 import { Component, Show, For, createMemo } from "solid-js";
 import FeaturedComponentBase from "./FeaturedComponentBase";
-import { Event } from "../model";
+import { EventType } from "../model";
 import { formatDate } from "../utils/date";
 import { transformToPortableText } from "@kontent-ai/rich-text-resolver";
 import { defaultPortableRichTextResolvers } from "../utils/richtext";
@@ -8,7 +8,7 @@ import { Replace } from "../utils/types";
 import { PortableText } from "@portabletext/solid";
 
 type FeaturedEventProps = {
-  event: Replace<Event, { elements: Partial<Event["elements"]> }>;
+  event: Replace<EventType, { elements: Partial<EventType["elements"]> }>;
 };
 
 const FeaturedEvent: Component<FeaturedEventProps> = (props) => {
@@ -31,15 +31,13 @@ const FeaturedEvent: Component<FeaturedEventProps> = (props) => {
           </Show>
           <Show when={props.event.elements.start_date}>
             <p class="text-center xl:text-left text-gray-light mt-6 text-lg">
-              {`${
-                props.event.elements.start_date!.value?.length
+              {`${props.event.elements.start_date!.value?.length
                   ? formatDate(props.event.elements.start_date!.value as string)
                   : ""
-              }${
-                props.event.elements.end_date?.value?.length
+                }${props.event.elements.end_date?.value?.length
                   ? ` - ${formatDate(props.event.elements.end_date.value as string)}`
                   : ""
-              }`}
+                }`}
             </p>
           </Show>
           <div class="flex mt-6 gap-2 justify-center xl:justify-normal">

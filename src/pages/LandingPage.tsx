@@ -4,7 +4,7 @@ import HeroImage from "../components/HeroImage";
 import PageContent from "../components/PageContent";
 import PageSection from "../components/PageSection";
 import "../index.css";
-import { type LandingPage } from "../model";
+import { type LandingPageType } from "../model";
 import { createClient } from "../utils/client";
 import { createQuery } from "@tanstack/solid-query";
 import { Component, Show, Suspense } from "solid-js";
@@ -25,7 +25,7 @@ const LandingPageContent: Component = () => {
         .type("landing_page")
         .limitParameter(1)
         .toPromise()
-        .then(res => res.data.items[0] as Replace<LandingPage, { elements: Partial<LandingPage["elements"]> }> ?? null)
+        .then(res => res.data.items[0] as Replace<LandingPageType, { elements: Partial<LandingPageType["elements"]> }> ?? null)
         .catch((err) => {
           if (err instanceof DeliveryError) {
             return null;
