@@ -6,7 +6,7 @@ import PageSection from "../components/PageSection";
 import "../index.css";
 import { type LandingPageType } from "../model";
 import { createClient } from "../utils/client";
-import { createQuery } from "@tanstack/solid-query";
+import { useQuery } from "@tanstack/solid-query";
 import { Component, Show, Suspense } from "solid-js";
 import { useAppContext } from "../context/AppContext";
 import { Replace } from "../utils/types";
@@ -17,7 +17,7 @@ import SolutionList from "../components/SolutionListItem";
 const LandingPageContent: Component = () => {
   const { environmentId, apiKey } = useAppContext();
 
-  const landingPageQuery = createQuery(() => ({
+  const landingPageQuery = useQuery(() => ({
     queryKey: ["landing_page"],
     queryFn: () =>
       createClient(environmentId, apiKey)
